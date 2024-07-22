@@ -1,0 +1,25 @@
+các khái niệm cơ bản và các thành phần trong thư viện Reactjs
+1.ReactJS Basic (3-4b)
+    -reciew es6 
+        - các thành phần cơ bản của ReactJS
+        Mini Project(student Manegement)-CRUD
+2.Redux(3b)
+    -các khái niệm cơ bản , các thành phần 
+    -Mini Project(shopping cart)
+3.Hook(3b)
+    Mini Project(Task lisk / todo App)
+4.API(1b)
+    -Local API / Mock API (mockapi.io)/apixm.devmaster.vn 
+    -Sử dụng (call api in ReactJS)
+5.Mock project(2b-4b)
+    -Hoàn thiện project
+*Học liệu 
+
+
+
+
+Lession 1
+
+
+tính chất hướng đói tượng 4 tính chất đặc trưng của hướng đối tượng
+overloading, overiding....
