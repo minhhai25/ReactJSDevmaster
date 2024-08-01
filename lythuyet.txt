@@ -16,10 +16,16 @@ các khái niệm cơ bản và các thành phần trong thư viện Reactjs
 *Học liệu 
 
 
-
-
 Lession 1
-
-
 tính chất hướng đói tượng 4 tính chất đặc trưng của hướng đối tượng
 overloading, overiding....
+
+
+Lession2 :
+đọc StrictMode
+
+class component: rcc- trả về qua lệnh return()
+funtion component:rfc-trả về qua hàm render{}
+                    -khi gọi attribute dùng this.props.
+
+tra thêm: stateless statefull
