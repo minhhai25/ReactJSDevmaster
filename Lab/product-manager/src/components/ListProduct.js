@@ -6,11 +6,16 @@ export default class ListProduct extends Component {
     super(props);
     this.state = {};
   }
-  handleViewOrEdit=(toggle,product)=>{
-    this.props.onHandleViewOrEdit(toggle,product);
+  handleViewOrEdit = (toggle, product, actionName) => {
+    this.props.onHandleViewOrEdit(toggle, product, actionName);
+    // console.log(product)
+  };
+  handleDelete=(productId)=>{
+    this.props.onHandleDelete(productId);
   }
   render() {
     let { renderProducts } = this.props;
+    // console.log(renderProducts)
     let elementProduct = renderProducts.map((product, index) => {
       return (
         <Product
@@ -18,6 +23,7 @@ export default class ListProduct extends Component {
           key={index}
           renderProduct={product}
           stt={index + 1}
+          onHandleDelete={this.handleDelete}
         />
       );
     });

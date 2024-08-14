@@ -5,10 +5,14 @@ export default class Product extends Component {
     super(props);
     this.state = {};
   }
-  handleViewOrEdit = (product) => {
-    this.props.onHandleViewOrEdit(true,product);
+  handleViewOrEdit = (product, actionName) => {
+    this.props.onHandleViewOrEdit(true, product, actionName);
   };
-
+  handleDelete=(productId)=>{
+if(window.confirm("bạn có muốn xóa sản phầm này")){
+  this.props.onHandleDelete(productId)
+}
+  }
   render() {
     let { renderProduct, stt } = this.props;
 
@@ -36,7 +40,11 @@ export default class Product extends Component {
             >
               Sửa
             </button>
-            <button type="button" className="btn btn-success btn-icon-text">
+            <button
+              type="button"
+              className="btn btn-success btn-icon-text"
+              onClick={() => this.handleDelete(renderProduct.productId)}
+            >
               Xóa
             </button>
           </div>

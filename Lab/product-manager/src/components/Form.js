@@ -1,7 +1,60 @@
 import React, { Component } from "react";
 
 export default class Form extends Component {
+  constructor(props) {
+    super(props);
+    // console.log(this.props)
+    this.state = {
+      productId: "",
+      productName: "",
+      quantity: 0,
+      price: 0,
+      actionName: "",
+    };
+  }
+  componentWillMount = () => {
+    let { renderProduct, renderActionName } = this.props;
+    this.setState({
+      productId: renderProduct.productId,
+      productName: renderProduct.productName,
+      quantity: renderProduct.quantity,
+      price: renderProduct.price,
+      // productName: renderProduct.name,
+      actionName: renderActionName,
+    });
+    // console.log(this.state.productId);
+  };
+
+  componentWillReceiveProps = (nextProps) => {
+    let { renderProduct, renderActionName } = nextProps;
+    this.setState({
+      productId: renderProduct.productId,
+      productName: renderProduct.productName,
+      quantity: renderProduct.quantity,
+      price: renderProduct.price,
+      actionName: renderActionName,
+    });
+  };
+  handleChange = (event) => {
+    let name = event.target.name;
+    let value = event.target.value;
+    this.setState({
+      [name]: value,
+    });
+  };
+  handleSubmit = (event) => {
+    event.preventDefault();
+    let product = {
+      productId: this.state.productId,
+      productName: this.state.productName,
+      quantity: this.state.quantity,
+      price: this.state.price,
+    };
+    this.props.onHandleSubmit(false,product,this.state.actionName)
+  };
   render() {
+    let { renderActionName } = this.props;
+    // console.log(renderActionName);
     return (
       <div className="col-5 grid-margin">
         <div className="card">
@@ -22,6 +75,9 @@ export default class Form extends Component {
                     placeholder="Product ID"
                     aria-label="ProductID"
                     aria-describedby="basic-addon1"
+                    name="productID"
+                    value={this.state.productId}
+                    onChange={this.handleChange}
                   />
                 </div>
               </div>
@@ -36,6 +92,9 @@ export default class Form extends Component {
                     placeholder="Product Name"
                     aria-label="ProductName"
                     aria-describedby="basic-addon1"
+                    name="productName"
+                    value={this.state.productName}
+                    onChange={this.handleChange}
                   />
                 </div>
               </div>
@@ -50,6 +109,9 @@ export default class Form extends Component {
                     placeholder="0"
                     aria-label="Quantity"
                     aria-describedby="basic-addon1"
+                    name="quantity"
+                    value={this.state.quantity}
+                    onChange={this.handleChange}
                   />
                 </div>
               </div>
@@ -64,55 +126,19 @@ export default class Form extends Component {
                     placeholder="0"
                     aria-label="Price"
                     aria-describedby="basic-addon1"
+                    name="price"
+                    value={this.state.price}
+                    onChange={this.handleChange}
                   />
                 </div>
               </div>
-              {/* <div className="form-group row">
-                <label className="col-sm-3 col-form-label">Tên sinh viên</label>
-                <div className="col-sm-9">
-                  <input type="text" className="form-control" />
-                </div>
-              </div>
-              <div className="form-group row">
-                <label className="col-sm-3 col-form-label">Tuổi</label>
-                <div className="col-sm-9">
-                  <input type="text" className="form-control" />
-                </div>
-              </div>
-              <div className="form-group row">
-                <label className="col-sm-3 col-form-label">Giới tính</label>
-                <div className="col-sm-9">
-                  <select className="form-control">
-                    <option>Nam</option>
-                    <option>Nữ</option>
-                  </select>
-                </div>
-              </div>
-              <div className="form-group row">
-                <label className="col-sm-3 col-form-label">Ngày sinh</label>
-                <div className="col-sm-9">
-                  <input className="form-control" placeholder="dd/mm/yyyy" />
-                </div>
-              </div>
-              <div className="form-group row">
-                <label className="col-sm-3 col-form-label">Nơi sinh</label>
-                <div className="col-sm-9">
-                  <select className="form-control">
-                    <option>Hà Nội</option>
-                    <option>TP. Hồ Chí Minh</option>
-                    <option>Đà Nẵng</option>
-                    <option>Quảng Ninh</option>
-                  </select>
-                </div>
-              </div>
-              <div className="form-group row">
-                <label className="col-sm-3 col-form-label">Địa chỉ</label>
-                <div className="col-sm-9">
-                  <textarea className="form-control" defaultValue={""} />
-                </div>
-              </div> */}
-              <button type="submit" className="btn btn-primary me-2">
-                Edit
+
+              <button
+                type="submit"
+                className="btn btn-primary me-2"
+                onClick={(event) => this.handleSubmit(event)}
+              >
+                {renderActionName}
               </button>
             </form>
           </div>

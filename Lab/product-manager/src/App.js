@@ -34,23 +34,55 @@ export default class App extends Component {
       ],
       isToggle: false,
       product: "",
+      actionName: "",
     };
+    // console.log(this.state.product);
   }
-  handleViewOrEdit = (toggle, student) => {
-    this.setState({ isToggle: toggle, student: student });
+  handleViewOrEdit = (toggle, product, actionName) => {
+    this.setState({
+      isToggle: toggle,
+      product: product,
+      actionName: actionName,
+    });
+    // console.log(actionName);
+  };
+  handleSubmit = (toggle, product, actionName) => {
+    console.log("Submit", toggle, product, actionName);
+    let lstProduct = this.state.listProduct;
+    if (actionName === "Update") {
+      for (let i = 0; i < lstProduct.length; i++) {
+        if (lstProduct[i].productId === product.productId) {
+          lstProduct[i] = product;
+          break;
+        }
+      }
+    }
+    this.setState({
+      listProduct: lstProduct,
+      isToggle: toggle,
+    });
+  };
+  handleDelete = (productId) => {
+    let { listProduct } = this.state;
+    listProduct = listProduct.filter((x) => x.productId !== productId);
+    this.setState({ listProduct: listProduct });
   };
   render() {
-    let lstProduct= this.state.listProduct;
+    let lstProduct = this.state.listProduct;
     let elementForm =
       this.state.isToggle === true ? (
-        <Form renderProduct={this.state.product} />
+        <Form
+          renderProduct={this.state.product}
+          renderActionName={this.state.actionName}
+          onHandleSubmit={this.handleSubmit}
+        />
       ) : (
         ""
       );
     return (
       <div>
         <div className="title">
-          {/* <img src="https://devmaster.edu.vn/images/logo.png" /> */}
+          <img src="https://devmaster.edu.vn/images/logo.png" />
           <h2>Quản lý sản phẩm </h2>
         </div>
         <div className="row">
@@ -62,12 +94,12 @@ export default class App extends Component {
               <ListProduct
                 renderProducts={lstProduct}
                 onHandleViewOrEdit={this.handleViewOrEdit}
+                onHandleDelete={this.handleDelete}
               />
             </div>
           </div>
           {elementForm}
         </div>
-       
       </div>
     );
   }
