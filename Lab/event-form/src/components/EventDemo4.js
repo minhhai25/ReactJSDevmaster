@@ -1,6 +1,6 @@
 import React from 'react'
 
-export default function EventDemo4( onSubmit ) {
+export default function EventDemo4( {onSubmit} ) {
     const handleClickMe=()=>{
         onSubmit("Data in EventDemo4",1000)
     }
@@ -11,3 +11,4 @@ export default function EventDemo4( onSubmit ) {
     </div>
   )
 }
+
