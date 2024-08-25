@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import CartItem from './CartItem';
-import CartTotal from './CartTotal';
+import CartInfo from "./CartInfo";
 import Notify from './Notify';
 
 export default class Cart extends Component {
@@ -25,19 +25,17 @@ export default class Cart extends Component {
               </thead>
               <tbody id="my-cart-body">
                 {/* CART BODY */}
-              <CartItem/>
+                <CartItem />
               </tbody>
               <tfoot id="my-cart-footer">
                 {/* CART FOOTER */}
-                <tr>
-                  <th colSpan={6}>Empty product in your cart</th>
-                </tr>
-              <CartTotal/>
+               
+                <CartInfo />
               </tfoot>
             </table>
           </div>
         </div>
-        <Notify/>
+        <Notify />
       </div>
     );
   }

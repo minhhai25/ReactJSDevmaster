@@ -1,7 +1,17 @@
 h1.page-title {
 	margin-bottom: 20px;
 }
-
+.page-header.d-flex.align-center {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+body{
+	background-color: #ddd;
+}
+.container{
+	background-color: white;
+}
 div.product {
 	border-bottom: 2px solid #eee;
 	padding: 2px 0px 12px 0px;
