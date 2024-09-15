@@ -1,21 +1,25 @@
-import React, { Component } from 'react'
+import React, { Component } from "react";
 
 export default class CartInfo extends Component {
   render() {
-    return (
-      <>
-        <tr>
-          <th colSpan={6}>Empty product in your cart</th>
-        </tr>
+    let { renderCount, renderTotal } = this.props;
+    let elementInfo = (
+      <tr>
+        <th colSpan={6}>Empty product in your cart</th>
+      </tr>
+    );
+    if (renderCount > 0) {
+      elementInfo = (
         <tr>
           <td colSpan={4}>
-            There are <b>5</b> items in your shopping cart.
+            There are <b>{renderCount}</b> items in your shopping cart.
           </td>
           <td colSpan={2} className="total-price text-left">
-            12 USD
+            {renderTotal} USD
           </td>
         </tr>
-      </>
-    );
+      );
+    }
+    return <> {elementInfo}</>;
   }
 }

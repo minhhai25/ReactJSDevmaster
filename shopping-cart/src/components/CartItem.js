@@ -1,28 +1,47 @@
-import React, { Component } from 'react'
+import React, { Component } from "react";
 
 export default class CartItem extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      quantity: 0,
+    };
+  }
+  // cập nhậ quantity trong state
+  componentWillMount=(props)=>{
+this.setState({quantity:props.renderCart.quantity});
+  }
+componentWillReceiveProps=(nextProps) => {
+this.setState({
+  quantity: nextProps.renderCart.quantity
+})
+}
   render() {
+    let { renderCart, stt } = this.props;
     return (
       <tr>
-        <th scope="row">1</th>
-        <td>Lorem ipsum.</td>
-        <td>12 USD</td>
+        <th scope="row">{stt}</th>
+        <td>{renderCart.product.productName}</td>
+        <td>{renderCart.product.price} USD</td>
         <td>
           <input
-            name="cart-item-quantity-1"
+            name="quantity"
             type="number"
-            defaultValue={1}
+            value={this.state.quantity}
             min={1}
           />
         </td>
         <td>
-          <strong>12 USD</strong>
+          <strong>{renderCart.product.price * renderCart.quantity} USD</strong>
         </td>
         <td>
           <a
             className="label label-info update-cart-item"
             href="#"
             data-product=""
+            onChange={(ev) => {
+              this.setState({ quantity: ev.target.value });
+            }}
           >
             Update
           </a>

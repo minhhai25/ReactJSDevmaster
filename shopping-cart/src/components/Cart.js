@@ -1,10 +1,20 @@
-import React, { Component } from 'react'
-import CartItem from './CartItem';
+import React, { Component } from "react";
+import CartItem from "./CartItem";
 import CartInfo from "./CartInfo";
-import Notify from './Notify';
-
-export default class Cart extends Component {
+import Notify from "./Notify";
+import { connect } from "react-redux";
+import cart from "../reducers/cart";
+class Cart extends Component {
   render() {
+    let { carts } = this.props;
+    let p_cout = carts.length;
+    let tongthanhtien = 0;
+    for (let i = 0; i < carts.length; i++) {
+      tongthanhtien = carts[i].product.price*carts[i].product.quantity;
+    }
+    let elementCartItem = carts.map((item, index) => {
+      return <CartItem key={index} renderCart={item} />;
+    });
     return (
       <div className="col-xs-12 col-sm-6 col-md-6 col-lg-6">
         <div className="panel panel-danger">
@@ -25,12 +35,12 @@ export default class Cart extends Component {
               </thead>
               <tbody id="my-cart-body">
                 {/* CART BODY */}
-                <CartItem />
+                {elementCartItem}
               </tbody>
               <tfoot id="my-cart-footer">
                 {/* CART FOOTER */}
-               
-                <CartInfo />
+
+                <CartInfo renderCount={p_cout} renderTotal={tongthanhtien} />
               </tfoot>
             </table>
           </div>
@@ -40,3 +50,10 @@ export default class Cart extends Component {
     );
   }
 }
+//mapStateToProps : kết nối dữ liệustate từ store đến component
+const mapStateToProps = (state) => {
+  return {
+    carts: state.cart,
+  };
+};
+export default connect(mapStateToProps, null)(Cart);

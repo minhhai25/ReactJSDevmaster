@@ -1,0 +1,13 @@
+{
+  "folders": [
+	{
+		"path": "../../.."
+	},
+	{
+		"path": "../../../../DEV2405-FE26/Xuongmoc"
+	}
+],
+  "settings": {
+    "liveServer.settings.multiRootWorkspaceName": "Xuongmoc"
+  }
+}

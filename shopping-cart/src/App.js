@@ -4,9 +4,10 @@ import React from 'react';
 import Cart from './components/Cart';
 import ListProduct from './components/ListProduct';
 import Title from './components/Title';
-
+import cart from './reducers/cart';
 function App() {
   return (
+    // console.log("Store",cart),
     <div className="container">
       {/* TITLE : START */}
      <Title/>
